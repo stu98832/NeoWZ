@@ -9,7 +9,7 @@
         }
 
         /// <summary> </summary>
-        public override string ToString() => "(empty)";
+        public override string ToString() => "";
 
         /// <summary> </summary>
         public override bool Equals(WzVariant obj) => true;
