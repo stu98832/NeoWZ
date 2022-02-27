@@ -48,43 +48,105 @@
         /// <summary> </summary>
         public abstract WzVariant Clone();
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="bool"/></para>
+        /// <para>zero number and null would be false</para>
+        /// <para>non-zero number or object would be true</para>
+        /// </summary>
         public virtual bool ToBool(bool def = false) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="sbyte"/></para>
+        /// <para>integer number would AND 0xFF</para>
+        /// <para><see cref="float "/> and <see cref="double "/> would cast to <see cref="sbyte"/> forcely</para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual sbyte ToSByte(sbyte def = 0) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="byte"/></para>
+        /// <para>integer number would AND 0xFF</para>
+        /// <para><see cref="float "/> and <see cref="double "/> would cast to <see cref="byte"/> forcely</para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual byte ToByte(byte def = 0) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="short"/></para>
+        /// <para>integer number would AND 0xFFFF</para>
+        /// <para><see cref="float "/> and <see cref="double "/> would cast to <see cref="short"/> forcely</para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual short ToShort(short def = 0) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="ushort"/></para>
+        /// <para>integer number would AND 0xFFFF</para>
+        /// <para><see cref="float "/> and <see cref="double "/> would cast to <see cref="ushort"/> forcely</para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual ushort ToUShort(ushort def = 0) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="int"/></para>
+        /// <para>integer number would AND 0xFFFFFFFF</para>
+        /// <para><see cref="float "/> and <see cref="double "/> would cast to <see cref="int"/> forcely</para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual int ToInt(int def = 0) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="uint"/></para>
+        /// <para>integer number would AND 0xFFFFFFFF</para>
+        /// <para><see cref="float "/> and <see cref="double "/> would cast to <see cref="uint"/> forcely</para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual uint ToUInt(uint def = 0) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="long"/></para>
+        /// <para>integer number would AND 0xFFFFFFFFFFFFFFFF</para>
+        /// <para><see cref="float "/> and <see cref="double "/> would cast to <see cref="long"/> forcely</para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual long ToLong(long def = 0) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="ulong"/></para>
+        /// <para>integer number would AND 0xFFFFFFFFFFFFFFFF</para>
+        /// <para><see cref="float "/> and <see cref="double "/> would cast to <see cref="ulong"/> forcely</para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual ulong ToULong(ulong def = 0) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="float"/></para>
+        /// <para>only <see cref="float"/> and <see cref="double"/> would cast to <see cref="float"/></para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual float ToFloat(float def = 0) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="double"/></para>
+        /// <para>only <see cref="float"/> and <see cref="double"/> would cast to <see cref="double"/></para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual double ToDouble(double def = 0) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="IWzSerialize"/></para>
+        /// <para> only <see cref="WzVariantType.Dispatch"/> would get <see cref="IWzSerialize"/> data</para>
+        /// <para>others no transferred</para>
+        /// </summary>
         public virtual IWzSerialize ToDispatch(IWzSerialize def = null) => def;
 
-        /// <summary> </summary>
+        /// <summary> 
+        /// <para>transfer data to <see cref="string"/></para>
+        /// <para>repersent data as <see cref="string"/></para>
+        /// <para><see cref="WzVariantType.Empty"/> would be ""</para>
+        /// <para><see cref="WzVariantType.Null"/> would be null</para>
+        /// <para> unprocessed <see cref="WzVariantType"/> would be "(type)[(hashcode)]"</para>
+        /// </summary>
         public override string ToString() => string.Format("{0}[{1}]", this.Type.ToString(), this.GetHashCode());
 
         /// <summary> 判斷指定的 <see cref="object"/> 和目前的 <see cref="object"/> 是否相等。 </summary>
