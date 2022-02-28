@@ -11,6 +11,8 @@
         /// <summary> </summary>
         public override string ToString() => "";
 
+        public override bool ToBool(bool def = false) => false;
+
         /// <summary> </summary>
         public override bool Equals(WzVariant obj) => true;
 

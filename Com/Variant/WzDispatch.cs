@@ -32,6 +32,8 @@ namespace NeoMS.Wz.Com.Variant
             this.Value = value;
         }
 
+        public override bool ToBool(bool def = false) => this.Value != null;
+
         /// <summary> </summary>
         public override string ToString() => this.Value?.ToString();
 

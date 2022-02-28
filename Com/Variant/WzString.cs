@@ -11,6 +11,8 @@
             this.Value = value;
         }
 
+        public override bool ToBool(bool def = false) => string.IsNullOrEmpty(this.Value);
+
         /// <summary> </summary>
         public override string ToString() => this.Value;
 
