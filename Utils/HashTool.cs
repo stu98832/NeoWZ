@@ -60,13 +60,11 @@
         }
 
         /// <summary> </summary>
-        public static uint DecryptOffsetHash(uint factor, uint offkey, uint off) {
-            return (factor ^ offkey) + off * 2;
-        }
+        public static uint DecryptOffsetHash(uint factor, uint offkey, uint off)
+            => (factor ^ offkey) + off * 2;
 
         /// <summary> </summary>
-        public static uint EncryptOffsetHash(uint loc, uint offkey, uint off) {
-            return ((loc - off * 2) ^ offkey);
-        }
+        public static uint EncryptOffsetHash(uint loc, uint offkey, uint off)
+            => loc - off * 2 ^ offkey;
     }
 }
