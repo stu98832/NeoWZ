@@ -1,5 +1,3 @@
-﻿using System.IO;
-
 ﻿namespace NeoMS.Wz.Utils
 {
     /// <summary> </summary>
