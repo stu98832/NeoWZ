@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeoMS.Framework.Utils
+﻿namespace NeoMS.Wz.Utils
 {
     public class BitTool
     {

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace NeoMS.Framework.Utils
+﻿namespace NeoMS.Wz.Utils
 {
     /// <summary> </summary>
     public class HashTool

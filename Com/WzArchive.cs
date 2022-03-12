@@ -1,4 +1,4 @@
-﻿using NeoMS.Framework.Utils;
+﻿using NeoMS.Wz.Utils;
 using System.IO;
 
 namespace NeoMS.Wz.Com
