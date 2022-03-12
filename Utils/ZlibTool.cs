@@ -9,14 +9,11 @@ namespace NeoMS.Framework.Utils
         public const byte Z_DEFLATE = 8;
 
         /// <summary> </summary>
-        public static bool CheckDeflate(byte unk, byte cmf, byte flg)
-        {
-            return (cmf == 0x78) && (flg == 0x9C || flg == 0xDA || flg == 0x01 || flg == 0x5E);
-        }
+        public static bool CheckDeflate(byte unk, byte cmf, byte flg) 
+            => (cmf == 0x78) && (flg == 0x9C || flg == 0xDA || flg == 0x01 || flg == 0x5E);
 
         /// <summary> </summary>
-        public static byte[] Compress(byte[] datas, int len)
-        {
+        public static byte[] Compress(byte[] datas, int len) {
             MemoryStream stream = new MemoryStream(), comp = new MemoryStream();
             DeflateStream zlib = new DeflateStream(comp, CompressionMode.Compress);
             byte[] aComp, result;
@@ -40,8 +37,7 @@ namespace NeoMS.Framework.Utils
         }
 
         /// <summary> </summary>
-        public static byte[] Decompress(byte[] datas, int len)
-        {
+        public static byte[] Decompress(byte[] datas, int len) {
             MemoryStream stream = new MemoryStream(datas);
             DeflateStream zlib = new DeflateStream(stream, CompressionMode.Decompress);
             int unk_byte = stream.ReadByte();
