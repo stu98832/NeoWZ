@@ -36,22 +36,14 @@
         }
 
         /// <summary> </summary>
-        public static int GeneratePackageVersionHash(string str) {
-            int hash = 0;
-            foreach (char ch in str) {
-                hash = ((hash << 5) + ((byte)ch)) + 1;
-            }
-            return hash;
-        }
+        public static int GeneratePackageVersionHash(string str) 
+            => str.Aggregate(0, (hash, ch) => (hash << 5) + (byte)ch + 1);
 
         /// <summary> </summary>
-        public static short EncryptPackageVersionHash(int hash) {
-            int val = 0;
-            for (int i = 0; i < 4; ++i) {
-                val ^= (hash >> (8 * i)) & 0xff;
-            }
-            return (byte)~val;
-        }
+        public static short EncryptPackageVersionHash(int hash) 
+            => Enumerable
+                .Range(0, 4)
+                .Aggregate((byte)0xFF, (x, i) => (byte)(x ^ (hash >> (8 * i))));
 
         /// <summary> </summary>
         public static uint GenerateOffsetKey(uint cur, uint off, int hash) {
