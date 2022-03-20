@@ -54,9 +54,9 @@ namespace NeoWZ.Serialize
         /// <param name="stream">Stream</param>
         /// <param name="obj">Object which would be serialized</param>
         public void Serialize<T>(WzStream stream, T obj) where T : class, IComObject {
-            var attr = typeof(T).GetCustomAttribute<ComClassAttribute>();
+            var attr = obj.GetType().GetCustomAttribute<ComClassAttribute>();
             if (attr == null) {
-                throw new ArgumentException($"Type {typeof(T)} not a com class");
+                throw new ArgumentException($"Type {obj.GetType()} not a com class");
             }
             stream.StringPool.Write(attr.ClassName, 0x73, 0x1B);
             obj.Serialize(stream, this);
