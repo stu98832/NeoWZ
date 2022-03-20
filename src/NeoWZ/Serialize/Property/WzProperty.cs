@@ -62,6 +62,7 @@ namespace NeoWZ.Serialize.Property
                 case 4: return new WzFloat(name, stream.ReadCompressedFloat());
                 case 5: return new WzDouble(name, stream.ReadDouble());
                 case 8: return new WzString(name, stream.StringPool.Read(0, 1));
+                case 13:
                 case 9: {
                     var size = stream.ReadInt32();
                     var off = stream.Position;
