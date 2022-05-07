@@ -12,7 +12,7 @@
         /// <param name="baseOff"> Base offset of data </param>
         /// <param name="key"> key </param>
         /// <returns></returns>
-        public static uint EncryptOffset(uint offset, uint baseOff, uint key) => (offset - baseOff * 2) ^ key;
+        public static uint EncryptOffset(uint offset, uint baseOff, uint key) => (offset - baseOff) ^ key;
 
         /// <summary>
         /// Decrypt offset
@@ -21,6 +21,6 @@
         /// <param name="baseOff"> Base offset of data </param>
         /// <param name="key"> Key </param>
         /// <returns></returns>
-        public static uint DecryptOffset(uint encrypted, uint baseOff, uint key) => (encrypted ^ key) + baseOff * 2;
+        public static uint DecryptOffset(uint encrypted, uint baseOff, uint key) => (encrypted ^ key) + baseOff;
     }
 }

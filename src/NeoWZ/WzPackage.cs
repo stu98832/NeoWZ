@@ -73,13 +73,14 @@ namespace NeoWZ
 
             ushort key = stream.ReadUInt16();
 
-            this.Root.Offset = (uint)stream.Position;
+            this.Root.Offset = 2; // skip key
+            var sectionStream = new WzStream(new SectionStream(this.mStream.Base, this.Offset), this.mStream.IV);
             for (int version = this.Version; version < 0xFFFF; version++) {
                 this.VersionHash = WzHash.VersionHash(version.ToString());
                 if (WzHash.PackageHash(this.VersionHash) == key) {
                     try {
-                        this.mStream.StringPool.Clear();
-                        this.Root.Read(this.mStream);
+                        sectionStream.StringPool.Clear();
+                        this.Root.Read(sectionStream);
                         this.Version = version;
                         return;
                     } catch (InvalidDataException) {

@@ -20,7 +20,7 @@ namespace NeoWZ
                 var name = stream.StringPool.ReadForDirectory(2, out type);
                 var size = stream.ReadCompressedInt32();
                 var checksum = stream.ReadCompressedInt32();
-                var offKey = WzHash.OffsetHash((uint)stream.Position, this.Package.Offset, this.Package.VersionHash);
+                var offKey = WzHash.OffsetHash((uint)stream.Position, this.Package.VersionHash);
                 var offset = WzSecurity.DecryptOffset(stream.ReadUInt32(), this.Package.Offset, offKey);
 
                 if ((offset + size) > stream.Length) {

@@ -27,11 +27,10 @@ namespace NeoWZ.Maths
         /// Hash offset
         /// </summary>
         /// <param name="cur"> Current position </param>
-        /// <param name="off"> Base offset of data</param>
         /// <param name="hash"> Hashed version string </param>
         /// <returns></returns>
-        public static uint OffsetHash(uint cur, uint off, int hash) {
-            uint key = (uint)(((~(cur - off)) * hash) - 0x581C3F6D);
+        public static uint OffsetHash(uint cur, int hash) {
+            uint key = (uint)(((~cur) * hash) - 0x581C3F6D);
             return key.RotateLeft((byte)(key & 0x1F));
         }
     }
