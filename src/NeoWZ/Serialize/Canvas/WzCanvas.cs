@@ -9,10 +9,10 @@ namespace NeoWZ.Serialize.Canvas
     public class WzCanvas : WzComBase, IEnumerable<WzVariant>
     {
         public virtual byte Unknow1_Byte { get; set; }
-        public virtual WzProperty Property { get; }
+        public virtual WzProperty Property { get; init; } = new WzProperty();
         public virtual int Width { get; set; }
         public virtual int Height { get; set; }
-        public virtual WzCanvasFormat Format { get; set; }
+        public virtual WzCanvasFormat Format { get; set; } = WzCanvasFormat.B8G8R8A8;
         public virtual byte Scale { get; set; }
         public virtual int Unknow2_Int { get; set; }
         public virtual byte[] CanvasData { get; set; }
@@ -21,8 +21,6 @@ namespace NeoWZ.Serialize.Canvas
         public WzVariant this[string path] => this.Property[path];
 
         public WzCanvas() {
-            this.Property = new WzProperty();
-            this.Format = WzCanvasFormat.B8G8R8A8;
         }
 
         public override WzComBase Clone() {
@@ -34,7 +32,8 @@ namespace NeoWZ.Serialize.Canvas
                 Format = this.Format,
                 Scale = this.Scale,
                 Unknow2_Int = this.Unknow2_Int,
-                CanvasData = new byte[this.CanvasData.Length]
+                CanvasData = new byte[this.CanvasData.Length],
+                Property = this.Property.Clone() as WzProperty
             };
             this.CanvasData.CopyTo(canvas.CanvasData, 0);
 
@@ -51,6 +50,7 @@ namespace NeoWZ.Serialize.Canvas
             this.Unknow1_Byte = (byte)stream.ReadByte();
             bool hasProperty = stream.ReadBool();
             if (hasProperty) {
+                this.Property.Clear();
                 this.Property.Deserialize(stream, serializer);
             }
             this.Width = stream.ReadCompressedInt32();
