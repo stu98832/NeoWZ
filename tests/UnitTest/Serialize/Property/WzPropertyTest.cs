@@ -56,7 +56,7 @@ namespace NeoWZ.Serialize.Property.Test
                 property.Add(item);
             }
 
-            Assert.AreEqual(WzVariant.Null, property["null"]);
+            Assert.AreEqual(WzVariant.Invalid, property["null"]);
         }
 
         [TestMethod]

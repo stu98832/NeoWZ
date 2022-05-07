@@ -22,7 +22,7 @@ namespace NeoWZ.Serialize.UOL
                     }
                 }
 
-                return parent == null ? WzVariant.Null : parent[names[names.Length - 1]];
+                return parent == null ? WzVariant.Invalid : parent[names[names.Length - 1]];
             }
             set {
                 string comPath = "";

@@ -8,7 +8,7 @@
         /// <summary>
         /// Null variant
         /// </summary>
-        public static WzNull Null { get; } = new WzNull(null);
+        public static WzInvalidVariant Invalid { get; } = new WzInvalidVariant();
 
         /// <summary>
         /// Gets or sets parent of this variant

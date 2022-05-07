@@ -17,10 +17,10 @@ namespace NeoWZ.Serialize.Property
                 if (section[0] == "") {
                     return new WzDispatch(this.Name, this);
                 } else if (section[0] == "..") {
-                    return this.Parent?.To<WzProperty>()?[section.Length == 1 ? "" : section[1]] ?? WzVariant.Null;
+                    return this.Parent?.To<WzProperty>()?[section.Length == 1 ? "" : section[1]] ?? WzVariant.Invalid;
                 }
-                var item = this.mItems.FirstOrDefault(x => x.Name == section[0], WzVariant.Null);
-                return section.Length == 1 ? item : item.ToCom<WzProperty>()?[section[1]] ?? WzVariant.Null;
+                var item = this.mItems.FirstOrDefault(x => x.Name == section[0], WzVariant.Invalid);
+                return section.Length == 1 ? item : item.ToCom<WzProperty>()?[section[1]] ?? WzVariant.Invalid;
             }
         }
 
