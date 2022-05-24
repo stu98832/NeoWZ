@@ -21,10 +21,9 @@ namespace NeoWZ.Maths.Test
 
         [TestMethod]
         public void OffsetHashTest() {
-            uint position = 84;
-            uint offset = 60;
+            uint position = 24;
             int hash = 53970;
-            Assert.AreEqual(1411600286u, WzHash.OffsetHash(position, offset, hash));
+            Assert.AreEqual(1411600286u, WzHash.OffsetHash(position, hash));
         }
     }
 }
