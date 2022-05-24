@@ -15,9 +15,13 @@ namespace NeoWZ.Serialize.Test
         public void Up() {
             Memory = new MemoryStream();
             Stream = new WzStream(Memory);
+            this.PerpareRawMockComClassData();
+            Stream.Seek(0, SeekOrigin.Begin);
+        }
+
+        private void PerpareRawMockComClassData() {
             Stream.StringPool.Write("Mock", 0x73, 0x7B);
             Stream.WriteInt32(Magic);
-            Stream.Seek(0, SeekOrigin.Begin);
         }
 
         [TestMethod]
