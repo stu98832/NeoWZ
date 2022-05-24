@@ -20,20 +20,28 @@ namespace NeoWZ.Serialize.Test
 
         [TestMethod]
         public void ReadAsciiTest() {
-            var datas = new byte[] { 0xE2, 0xCE, 0xC0, 0xC1, 0xC1 };
-            this.Stream?.WriteSByte(-5);
-            this.Stream?.Write(datas);
+            this.WriteAsciiHelloString(this.Stream);
             this.Stream?.Base.Seek(0, SeekOrigin.Begin);
             Assert.AreEqual("Hello", SerializeString.Read(this.Stream));
         }
 
+        private void WriteAsciiHelloString(WzStream stream) {
+            var datas = new byte[] { 0xE2, 0xCE, 0xC0, 0xC1, 0xC1 };
+            stream.WriteSByte(-5);
+            stream.Write(datas);
+        }
+
         [TestMethod]
         public void ReadUnicodeTest() {
-            var datas = new byte[] { 0xE2, 0xAA, 0xCE, 0xAA, 0xC0, 0xAA, 0xC1, 0xAA, 0xC1, 0xAA };
-            this.Stream?.WriteSByte(5);
-            this.Stream?.Write(datas);
+            this.WriteUnicodeHelloString(this.Stream);
             this.Stream?.Base.Seek(0, SeekOrigin.Begin);
             Assert.AreEqual("Hello", SerializeString.Read(this.Stream));
+        }
+
+        private void WriteUnicodeHelloString(WzStream stream) {
+            var datas = new byte[] { 0xE2, 0xAA, 0xCE, 0xAA, 0xC0, 0xAA, 0xC1, 0xAA, 0xC1, 0xAA };
+            stream.WriteSByte(5);
+            stream.Write(datas);
         }
 
         [TestMethod]
