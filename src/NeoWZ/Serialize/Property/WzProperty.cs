@@ -9,7 +9,6 @@ namespace NeoWZ.Serialize.Property
     {
         private List<WzVariant> mItems = new();
 
-        public ushort Unknown { get; set; }
         public WzVariant this[int index] => this.mItems[index];
         public WzVariant this[string path] {
             get {
@@ -25,7 +24,8 @@ namespace NeoWZ.Serialize.Property
         }
 
         public override void Serialize(WzStream stream, ComSerializer serializer) {
-            stream.WriteUInt16(this.Unknown);
+            stream.WriteByte(0);
+            stream.WriteByte(0);
             stream.WriteCompressedInt32(this.Count);
             foreach (var v in this.mItems) {
                 this.WriteVariant(stream, v, serializer);
@@ -35,7 +35,8 @@ namespace NeoWZ.Serialize.Property
         public override void Deserialize(WzStream stream, ComSerializer serializer) {
             this.mItems.Clear();
 
-            this.Unknown = stream.ReadUInt16();
+            stream.ReadByte(); // ascii code for plain text property
+            stream.ReadByte();
             var count = stream.ReadCompressedInt32();
             for (int i=0;i<count;++i) {
                 var variant = this.ReadVariant(stream, serializer);
@@ -137,8 +138,6 @@ namespace NeoWZ.Serialize.Property
         // WzSerializable
         public override WzComBase Clone() {
             var prop = new WzProperty() { Name = this.Name };
-
-            prop.Unknown = this.Unknown;
 
             foreach (WzVariant v in this.mItems) {
                 prop.Add(v.Clone());

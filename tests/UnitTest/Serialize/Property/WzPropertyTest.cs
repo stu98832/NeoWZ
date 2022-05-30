@@ -99,14 +99,12 @@ namespace NeoWZ.Serialize.Property.Test
         public void SerializeDeserializeTest() {
             var property = new WzProperty();
             var stream = new MemoryStream();
-            property.Unknown = 64321;
             property.Add(new WzInt("int", 32));
             property.Add(new WzLong("long", 32));
             property.Add(new WzLong("value", 32));
             ComSerializer.Default.Serialize(stream, property);
             stream.Seek(0, SeekOrigin.Begin);
             var anotherProperty = ComSerializer.Default.Deserialize<WzProperty>(stream);
-            Assert.AreEqual(property.Unknown, anotherProperty.Unknown);
             Assert.AreEqual(property.Count, anotherProperty.Count);
             for (var i=0;i<property.Count;++i) {
                 Assert.AreEqual(property[i].Name, anotherProperty[i].Name);
