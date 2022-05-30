@@ -6,7 +6,6 @@ namespace NeoWZ.Serialize.UOL
     [ComClass("UOL")]
     public class WzUOL : WzComBase
     {
-        public byte Unknow1_Byte { get; set; } = 0;
         public string Path { get; set; } = null;
 
         public WzVariant Variant {
@@ -49,7 +48,6 @@ namespace NeoWZ.Serialize.UOL
         }
 
         public override WzComBase Clone() => new WzUOL() {
-            Unknow1_Byte = this.Unknow1_Byte,
             Path = this.Path
         };
 
@@ -59,12 +57,12 @@ namespace NeoWZ.Serialize.UOL
         }
 
         public override void Serialize(WzStream stream, ComSerializer serializer) {
-            stream.WriteByte(this.Unknow1_Byte);
+            stream.WriteByte(0);
             stream.StringPool.Write(this.Path, 0, 1);
         }
 
         public override void Deserialize(WzStream stream, ComSerializer serializer) {
-            this.Unknow1_Byte = (byte)stream.ReadByte();
+            stream.ReadByte();
             this.Path = stream.StringPool.Read(0, 1);
         }
     }
