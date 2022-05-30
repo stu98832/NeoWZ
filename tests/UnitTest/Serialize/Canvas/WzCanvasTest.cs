@@ -19,8 +19,6 @@ namespace NeoWZ.Serialize.Canvas.Test
                 CanvasData = new byte[32 * 32],
                 Format = WzCanvasFormat.B4G4R4A4,
                 Scale = 3,
-                Unknow1_Byte = 1,
-                Unknow2_Int = 64,
             };
             canvas.Property.Add(variant);
             ComSerializer.Default.Serialize(memory, canvas);
@@ -32,8 +30,6 @@ namespace NeoWZ.Serialize.Canvas.Test
             CollectionAssert.AreEqual(canvas.CanvasData, anotherConvas.CanvasData);
             Assert.AreEqual(canvas.Format, anotherConvas.Format);
             Assert.AreEqual(canvas.Scale, anotherConvas.Scale);
-            Assert.AreEqual(canvas.Unknow1_Byte, anotherConvas.Unknow1_Byte);
-            Assert.AreEqual(canvas.Unknow2_Int, anotherConvas.Unknow2_Int);
             Assert.AreEqual(canvas.Property.Count, anotherConvas.Property.Count);
             Assert.AreEqual(canvas.Property[0], anotherConvas.Property[0]);
         }
