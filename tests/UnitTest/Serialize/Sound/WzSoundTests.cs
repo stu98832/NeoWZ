@@ -11,12 +11,12 @@ namespace NeoWZ.Serialize.Sound.Tests
         public void SerializeDeserializeTest() {
             var memory = new MemoryStream();
             var sound = new WzSound() {
-                Unknow1_Byte = 65,
-                Unknow3_Byte = 31,
+                Unknown = 31,
                 Duration = 1000,
                 SoundData = new byte[32],
                 MediaType = new WzMediaType() {
-                    Flag = 0x3,
+                    TemporalCompression = true,
+                    FixedSizeSamples = true,
                     FormatLength = 16,
                     FormatData = new byte[16],
                     FormatType = Guid.NewGuid(),
@@ -29,8 +29,7 @@ namespace NeoWZ.Serialize.Sound.Tests
             memory.Seek(0, SeekOrigin.Begin);
 
             var anotherSound = ComSerializer.Default.Deserialize<WzSound>(memory);
-            Assert.AreEqual(sound.Unknow1_Byte, anotherSound.Unknow1_Byte);
-            Assert.AreEqual(sound.Unknow3_Byte, anotherSound.Unknow3_Byte);
+            Assert.AreEqual(sound.Unknown, anotherSound.Unknown);
             Assert.AreEqual(sound.Duration, anotherSound.Duration);
             CollectionAssert.AreEqual(sound.SoundData, anotherSound.SoundData);
             Assert.AreEqual(sound.MediaType.FormatLength, anotherSound.MediaType.FormatLength);
@@ -39,7 +38,8 @@ namespace NeoWZ.Serialize.Sound.Tests
             Assert.AreEqual(sound.MediaType.MajorType, anotherSound.MediaType.MajorType);
             Assert.AreEqual(sound.MediaType.SubType, anotherSound.MediaType.SubType);
             Assert.AreEqual(sound.MediaType.SampleSize, anotherSound.MediaType.SampleSize);
-            Assert.AreEqual(sound.MediaType.Flag, anotherSound.MediaType.Flag);
+            Assert.AreEqual(sound.MediaType.TemporalCompression, anotherSound.MediaType.TemporalCompression);
+            Assert.AreEqual(sound.MediaType.FixedSizeSamples, anotherSound.MediaType.FixedSizeSamples);
         }
     }
 }
