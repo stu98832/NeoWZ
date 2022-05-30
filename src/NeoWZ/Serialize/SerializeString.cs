@@ -19,7 +19,7 @@ namespace NeoWZ.Serialize
 
             var str = stream.Read(length * (unicode ? 2 : 1), true);
 
-            Process(str, length, unicode);
+            Transform(str, length, unicode);
 
             return (unicode ? Encoding.Unicode : Encoding.ASCII).GetString(str);
         }
@@ -29,7 +29,7 @@ namespace NeoWZ.Serialize
             var uni = str.Any(x => x > 0xFF);
             var chars = (uni ? Encoding.Unicode : Encoding.ASCII).GetBytes(str);
 
-            Process(chars, len, uni);
+            Transform(chars, len, uni);
 
             if ((uni && len <= 127) || (!uni && len <= 128)) {
                 stream.WriteSByte((sbyte)(uni ? len : -len));
@@ -41,8 +41,7 @@ namespace NeoWZ.Serialize
             stream.Write(chars, true);
         }
 
-        // Process string to serialize string
-        private static unsafe void Process(byte[] src, int len, bool unicode) {
+        private static unsafe void Transform(byte[] src, int len, bool unicode) {
             uint chkey = 0xAAAA;
             fixed (byte* pointer = src) {
                 byte* ch = pointer;
