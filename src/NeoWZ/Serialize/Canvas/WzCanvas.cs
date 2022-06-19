@@ -1,5 +1,5 @@
 ﻿using NeoWZ.Extensions;
-using NeoWZ.Serialize.Attributes;
+using NeoWZ.Com;
 using NeoWZ.Serialize.Property;
 using System.Collections;
 

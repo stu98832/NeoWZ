@@ -1,4 +1,4 @@
-﻿using NeoWZ.Serialize.Attributes;
+﻿using NeoWZ.Com;
 using System.Reflection;
 
 namespace NeoWZ.Serialize

@@ -1,4 +1,4 @@
-﻿using NeoWZ.Serialize.Attributes;
+﻿using NeoWZ.Com;
 
 namespace NeoWZ.Serialize.Test.Mock
 {

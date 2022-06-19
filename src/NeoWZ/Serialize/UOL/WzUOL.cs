@@ -1,4 +1,4 @@
-﻿using NeoWZ.Serialize.Attributes;
+﻿using NeoWZ.Com;
 using NeoWZ.Serialize.Property;
 
 namespace NeoWZ.Serialize.UOL
