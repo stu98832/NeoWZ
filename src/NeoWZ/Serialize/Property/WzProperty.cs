@@ -135,7 +135,6 @@ namespace NeoWZ.Serialize.Property
             }
         }
 
-        // WzSerializable
         public override WzComBase Clone() {
             var prop = new WzProperty() { Name = this.Name };
 
@@ -146,7 +145,6 @@ namespace NeoWZ.Serialize.Property
             return prop;
         }
 
-        // IEnumerable
         public IEnumerator<WzVariant> GetEnumerator() => this.mItems.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => this.mItems.GetEnumerator();
     }
