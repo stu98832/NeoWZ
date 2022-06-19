@@ -7,7 +7,7 @@ using System.Collections;
 namespace NeoWZ.Serialize.Canvas
 {
     [ComClass("Canvas")]
-    public class WzCanvas : WzComBase, IEnumerable<WzVariant>
+    public class WzCanvas : WzSerializable, IEnumerable<WzVariant>
     {
         public virtual WzProperty Property { get; init; } = new WzProperty();
         public virtual int Width { get; set; }
@@ -22,7 +22,7 @@ namespace NeoWZ.Serialize.Canvas
         public WzCanvas() {
         }
 
-        public override WzComBase Clone() {
+        public override WzSerializable Clone() {
             var canvas = new WzCanvas() {
                 Name = this.Name,
                 Width = this.Width,

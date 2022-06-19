@@ -9,17 +9,17 @@ using System.Text.Json;
 
 namespace NeoWZ.Json
 {
-    /// <summary> Provide methods for <see cref="WzComBase"/> to convert to json. </summary>
+    /// <summary> Provide methods for <see cref="WzSerializable"/> to convert to json. </summary>
     public static class WzJsonExtension
     {
-        /// <summary> convert <seealso cref="WzComBase"/> to json string without image/sound data </summary>
-        public static string ToJson(this WzComBase com) {
+        /// <summary> convert <seealso cref="WzSerializable"/> to json string without image/sound data </summary>
+        public static string ToJson(this WzSerializable com) {
             return JsonSerializer.Serialize(JsonObject(com), new JsonSerializerOptions {
                 WriteIndented = true
             });
         }
 
-        private static object JsonObject(WzComBase com) {
+        private static object JsonObject(WzSerializable com) {
             if (com is WzProperty) {
                 return JsonObject(com as WzProperty);
             } else if (com is WzVector2D) {

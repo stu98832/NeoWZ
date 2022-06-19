@@ -5,7 +5,7 @@ using NeoWZ.Serialize.Property.Variant;
 namespace NeoWZ.Serialize.UOL
 {
     [ComClass("UOL")]
-    public class WzUOL : WzComBase
+    public class WzUOL : WzSerializable
     {
         public string Path { get; set; } = null;
 
@@ -48,7 +48,7 @@ namespace NeoWZ.Serialize.UOL
             }
         }
 
-        public override WzComBase Clone() => new WzUOL() {
+        public override WzSerializable Clone() => new WzUOL() {
             Path = this.Path
         };
 

@@ -4,7 +4,7 @@ namespace NeoWZ.Serialize.Property.Variant
 {
     public abstract class WzComValue : WzVariant
     {
-        public override WzComBase Parent {
+        public override WzSerializable Parent {
             get => this.Value?.Parent ?? base.Parent;
             set {
                 if (this.Value != null) {
@@ -14,9 +14,9 @@ namespace NeoWZ.Serialize.Property.Variant
             }
         }
 
-        public WzComBase Value { get; set; }
+        public WzSerializable Value { get; set; }
 
-        public WzComValue(string name, WzComBase value = null) : base(name) {
+        public WzComValue(string name, WzSerializable value = null) : base(name) {
             this.Value = value;
         }
 
@@ -28,7 +28,7 @@ namespace NeoWZ.Serialize.Property.Variant
         public override void Deserialize(WzStream stream, ComSerializer serializer) {
             var size = stream.ReadInt32();
             var off = stream.Position;
-            this.Value = serializer.Deserialize<WzComBase>(stream);
+            this.Value = serializer.Deserialize<WzSerializable>(stream);
 
             // prevent incomplete deserialize
             stream.Seek(off + size, SeekOrigin.Begin);

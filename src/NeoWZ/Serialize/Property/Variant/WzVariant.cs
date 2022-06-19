@@ -10,7 +10,7 @@ namespace NeoWZ.Serialize.Property.Variant
         /// <summary>
         /// Gets or sets parent of this variant
         /// </summary>
-        public virtual WzComBase Parent { get; set; } = null;
+        public virtual WzSerializable Parent { get; set; } = null;
 
         /// <summary>
         /// Gets or sets name of this variant

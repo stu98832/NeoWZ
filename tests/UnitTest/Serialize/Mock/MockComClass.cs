@@ -3,7 +3,7 @@
 namespace NeoWZ.Serialize.Test.Mock
 {
     [ComClass("Mock")]
-    public class MockComClass : WzComBase
+    public class MockComClass : WzSerializable
     {
         public int Value { get; set; }
 

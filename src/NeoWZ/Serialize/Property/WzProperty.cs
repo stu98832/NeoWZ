@@ -6,7 +6,7 @@ using System.Collections;
 namespace NeoWZ.Serialize.Property
 {
     [ComClass("Property")]
-    public class WzProperty : WzComBase, IEnumerable<WzVariant>
+    public class WzProperty : WzSerializable, IEnumerable<WzVariant>
     {
         private List<WzVariant> mItems = new();
 
@@ -65,7 +65,7 @@ namespace NeoWZ.Serialize.Property
             variant.Serialize(stream, serializer);
         }
 
-        public override WzComBase Clone() {
+        public override WzSerializable Clone() {
             var prop = new WzProperty() { Name = this.Name };
             prop.mItems.AddRange(this.mItems.Select(v => v.Clone()));
 

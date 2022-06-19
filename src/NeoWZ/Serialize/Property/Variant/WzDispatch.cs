@@ -6,9 +6,9 @@ namespace NeoWZ.Serialize.Property.Variant
     {
         public override VariantType Type => VariantType.Dispatch;
 
-        public WzDispatch(string name, WzComBase value = null) : base(name, value) {
+        public WzDispatch(string name, WzSerializable value = null) : base(name, value) {
         }
 
-        public override WzVariant Clone() => new WzDispatch(this.Name, this.Value.Clone().To<WzComBase>());
+        public override WzVariant Clone() => new WzDispatch(this.Name, this.Value.Clone().To<WzSerializable>());
     }
 }

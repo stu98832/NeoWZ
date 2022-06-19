@@ -1,9 +1,9 @@
 ﻿namespace NeoWZ.Serialize
 {
-    public abstract class WzComBase : IComSerializable
+    public abstract class WzSerializable : IComSerializable
     {
         public virtual string Name { get; set; }
-        public virtual WzComBase Parent { get; set; }
+        public virtual WzSerializable Parent { get; set; }
         public abstract IComSerializable Clone();
 
         public T To<T>() where T : class, IComSerializable => this as T;
