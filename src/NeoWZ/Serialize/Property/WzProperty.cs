@@ -67,10 +67,7 @@ namespace NeoWZ.Serialize.Property
 
         public override WzComBase Clone() {
             var prop = new WzProperty() { Name = this.Name };
-
-            foreach (WzVariant v in this.mItems) {
-                prop.Add(v.Clone());
-            }
+            prop.mItems.AddRange(this.mItems.Select(v => v.Clone()));
 
             return prop;
         }
