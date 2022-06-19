@@ -7,7 +7,7 @@ namespace NeoWZ.Serialize.Test.Mock
     {
         public int Value { get; set; }
 
-        public override IComObject Clone() => new MockComClass() { Value = this.Value };
+        public override IComSerializable Clone() => new MockComClass() { Value = this.Value };
         public override void Deserialize(WzStream stream, ComSerializer serializer) => this.Value = stream.ReadInt32();
         public override void Serialize(WzStream stream, ComSerializer serializer) => stream.WriteInt32(this.Value);
     }

@@ -91,11 +91,11 @@ namespace NeoWZ.Com
         public virtual double ToDouble(double def = 0) => def;
 
         /// <summary>
-        /// <para>Convert variant data to <see cref="IComObject"/></para>
+        /// <para>Convert variant data to <see cref="IComSerializable"/></para>
         /// </summary>
         /// <param name="def">defaut return</param>
-        /// <returns><see cref="IComObject"/> value of this variant, return default value when convert failed</returns>
-        public virtual T ToCom<T>(T def = null) where T : class, IComObject => def;
+        /// <returns><see cref="IComSerializable"/> value of this variant, return default value when convert failed</returns>
+        public virtual T ToCom<T>(T def = null) where T : class, IComSerializable => def;
 
         /// <summary>
         /// Convert variant to other derive type

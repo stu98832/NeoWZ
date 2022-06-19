@@ -53,7 +53,7 @@ namespace NeoWZ.Serialize.Property.Variant.Test
         public void ToTextTest() => Assert.AreEqual(PropertyValue?.ToString(), Variant.ToText("text"));
 
         [TestMethod]
-        public void ToComTest() => Assert.AreEqual(PropertyValue, Variant.ToCom<IComObject>());
+        public void ToComTest() => Assert.AreEqual(PropertyValue, Variant.ToCom<IComSerializable>());
 
         [TestMethod]
         public void EqualsTest() => Assert.AreEqual(new WzDispatch("variant", PropertyValue), Variant);

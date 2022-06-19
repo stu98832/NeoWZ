@@ -11,7 +11,7 @@ namespace NeoWZ.Serialize
         public WzSerializer(byte[] iv = null) : base(iv) {
         }
 
-        protected override IComObject GetUnknown(string className) {
+        protected override IComSerializable GetUnknown(string className) {
             switch (className) {
                 case "Property": 
                     return new WzProperty();

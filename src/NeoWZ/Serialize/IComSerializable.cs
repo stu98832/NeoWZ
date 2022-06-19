@@ -1,17 +1,17 @@
 ﻿namespace NeoWZ.Serialize
 {
     /// <summary>
-    /// Repersent a serializable PCOM object
+    /// Repersent a serializable COM object
     /// </summary>
-    public interface IComObject : IDisposable
+    public interface IComSerializable : IDisposable
     {
         /// <summary>
-        /// Convert this object to other com class which inherits from <see cref="IComObject"/>
+        /// Convert this object to other com class which inherits from <see cref="IComSerializable"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="def"></param>
         /// <returns></returns>
-        T To<T>() where T : class, IComObject => this as T;
+        T To<T>() where T : class, IComSerializable => this as T;
 
         /// <summary>
         /// Serialize this object by specific serializer

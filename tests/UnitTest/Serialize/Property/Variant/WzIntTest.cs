@@ -49,7 +49,7 @@ namespace NeoWZ.Serialize.Property.Variant.Test
         public void ToTextTest() => Assert.AreEqual("100000", Variant.ToText("text"));
 
         [TestMethod]
-        public void ToComTest() => Assert.AreEqual(null, Variant.ToCom<IComObject>());
+        public void ToComTest() => Assert.AreEqual(null, Variant.ToCom<IComSerializable>());
 
         [TestMethod]
         public void EqualsTest() => Assert.AreEqual(new WzInt("variant") { Value = 100000 }, Variant);
