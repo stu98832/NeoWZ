@@ -1,32 +1,32 @@
 ﻿using NeoWZ.Com;
-using NeoWZ.Serialize.Factory;
 using System.Reflection;
 
 namespace NeoWZ.Serialize
 {
     /// <summary>
     /// Can serialize or deserialize any <see cref="IComSerializable"/> object
-    public class ComSerializer
+    /// </summary>
+    public abstract class ComSerializer
     {
-        public static ComSerializer Default = new ComSerializer();
+        /// <summary>
+        /// Default <see cref="ComSerializer"/> without cipher
+        /// </summary>
+        public static ComSerializer Default { get; } = new WzSerializer();
+
+        /// <summary>
+        /// Create a build-in <see cref="ComSerializer"/> with cipher
+        /// </summary>
+        /// <param name="iv">AES iv</param>
+        /// <returns>Build-in serializer</returns>
+        public static ComSerializer Create(byte[] iv) => new WzSerializer(iv);
 
         /// <summary>
         /// AES iv
         /// </summary>
         public byte[] IV { get; protected set; }
 
-        private IComSerializableFactory Factory { get; init; }
-
-        /// <summary> Create serializer with default factory </summary>
-        /// <param name="iv">crypt iv</param>
-        public ComSerializer(byte[] iv = null) : this(new WzSerializableFactory(), iv) {
-        }
-
-        /// <summary> Create serializer with specific factory </summary>
-        /// <param name="iv">crypt iv</param>
-        public ComSerializer(IComSerializableFactory factory, byte[] iv = null) {
+        public ComSerializer(byte[] iv = null) {
             this.IV = iv;
-            this.Factory = factory;
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace NeoWZ.Serialize
             var className = stream.StringPool.Read(0x73, 0x1B);
             T obj;
             if (attr == null) {
-                obj = this.Factory?.CreateByName(className) as T ?? throw new Exception("No class found");
+                obj = this.GetUnknown(className) as T;
             } else if (attr.ClassName != className) {
                 throw new ArgumentException($"Wrong com class {className}, real: {attr.ClassName}");
             } else {
@@ -99,5 +99,12 @@ namespace NeoWZ.Serialize
             obj.Deserialize(stream, this);
             return obj;
         }
+
+        /// <summary>
+        /// Create <see cref="IComSerializable"/> object when serializer could not comfirm object type
+        /// </summary>
+        /// <param name="className"></param>
+        /// <returns><see cref="IComSerializable"/> object</returns>
+        protected abstract IComSerializable GetUnknown(string className);
     }
 }
