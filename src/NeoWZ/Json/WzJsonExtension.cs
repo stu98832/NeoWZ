@@ -1,6 +1,7 @@
 ﻿using NeoWZ.Serialize;
 using NeoWZ.Serialize.Canvas;
 using NeoWZ.Serialize.Property;
+using NeoWZ.Serialize.Property.Variant;
 using NeoWZ.Serialize.Shape2D;
 using NeoWZ.Serialize.Sound;
 using NeoWZ.Serialize.UOL;

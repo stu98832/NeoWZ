@@ -1,6 +1,7 @@
 ﻿using NeoWZ.Extensions;
 using NeoWZ.Com;
 using NeoWZ.Serialize.Property;
+using NeoWZ.Serialize.Property.Variant;
 using System.Collections;
 
 namespace NeoWZ.Serialize.Canvas

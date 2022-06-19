@@ -1,5 +1,6 @@
 ﻿using NeoWZ.Com;
 using NeoWZ.Serialize.Property;
+using NeoWZ.Serialize.Property.Variant;
 
 namespace NeoWZ.Serialize.UOL
 {
@@ -21,7 +22,7 @@ namespace NeoWZ.Serialize.UOL
                     }
                 }
 
-                return parent == null ? WzVariant.Invalid : parent[names[names.Length - 1]];
+                return parent?[names[names.Length - 1]];
             }
             set {
                 string comPath = "";

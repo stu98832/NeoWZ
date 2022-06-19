@@ -1,8 +1,12 @@
-﻿namespace NeoWZ.Serialize.Property
+﻿using NeoWZ.Com;
+using NeoWZ.Extensions;
+
+namespace NeoWZ.Serialize.Property.Variant
 {
     /// <summary> </summary>
     public class WzUInt : WzVariant
     {
+        public override VariantType Type => VariantType.UInt32;
         public uint Value { get; set; }
 
         public WzUInt(string name, uint value = 0) : base(name) {
@@ -21,7 +25,11 @@
         public override float ToFloat(float def = 0) => this.Value;
         public override double ToDouble(double def = 0) => this.Value;
         public override string ToText(string def = null) => this.Value.ToString();
-        public override bool Equals(WzVariant obj) => this.Value == (obj as WzUInt).Value;
+        public override bool Equals(ComVariant obj) => this.Value == (obj as WzUInt).Value;
         public override WzVariant Clone() => new WzUInt(this.Name, this.Value);
+        public override void Deserialize(WzStream stream, ComSerializer serializer) =>
+            this.Value = (uint)stream.ReadCompressedInt32();
+        public override void Serialize(WzStream stream, ComSerializer serializer) =>
+            stream.WriteCompressedInt32((int)this.Value);
     }
 }

@@ -1,28 +1,10 @@
-﻿namespace NeoWZ.Serialize.Property
+﻿using NeoWZ.Serialize;
+
+namespace NeoWZ.Com
 {
-    /// <summary>
-    /// Variant object for WZ
-    /// </summary>
-    public abstract class WzVariant
+    public abstract class ComVariant
     {
-        /// <summary>
-        /// Null variant
-        /// </summary>
-        public static WzInvalidVariant Invalid { get; } = new WzInvalidVariant();
-
-        /// <summary>
-        /// Gets or sets parent of this variant
-        /// </summary>
-        public virtual WzComBase Parent { get; set; } = null;
-
-        /// <summary>
-        /// Gets or sets name of this variant
-        /// </summary>
-        public string Name { get; set; }
-
-        public WzVariant(string name) {
-            this.Name = name;
-        }
+        public abstract VariantType Type { get; }
 
         /// <summary>
         /// <para>Convert variant data to <see cref="bool"/></para>
@@ -120,27 +102,22 @@
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public virtual T To<T>() where T : WzVariant => this as T;
-
-        /// <summary>
-        /// Clone current variant
-        /// </summary>
-        /// <returns></returns>
-        public abstract WzVariant Clone();
+        public virtual T To<T>() where T : ComVariant => this as T;
 
         /// <summary>
         /// Check specific variant is equal to current variant
         /// </summary>
         /// <param name="obj"></param>
         /// <returns><see langword="true"/> if two variant has same type, name and value; otherwise, <see langword="false"/></returns>
-        public abstract bool Equals(WzVariant obj);
+        public abstract bool Equals(ComVariant obj);
 
         public override bool Equals(object obj) =>
-            obj is WzVariant
-            ? this.GetType() == obj.GetType() 
-                && this.Name == (obj as WzVariant).Name
-                && this.Equals(obj as WzVariant)
+            obj is ComVariant
+            ? this.GetType() == obj.GetType()
+                && this.Type == (obj as ComVariant).Type
+                && this.Equals(obj as ComVariant)
             : base.Equals(obj);
+
         public override int GetHashCode() => base.GetHashCode();
     }
 }

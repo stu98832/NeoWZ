@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NeoWZ.Serialize;
-using NeoWZ.Serialize.Property;
 
 namespace NeoWZ.Serialize.Property.Variant.Test
 {
