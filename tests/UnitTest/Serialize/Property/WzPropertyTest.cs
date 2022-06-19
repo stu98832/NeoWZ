@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NeoWZ.Serialize.Property.Variant;
 using System.IO;
 
 namespace NeoWZ.Serialize.Property.Test
@@ -56,7 +57,7 @@ namespace NeoWZ.Serialize.Property.Test
                 property.Add(item);
             }
 
-            Assert.AreEqual(WzVariant.Invalid, property["null"]);
+            Assert.IsNull(property["null"]);
         }
 
         [TestMethod]

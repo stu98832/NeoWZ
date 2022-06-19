@@ -1,18 +1,18 @@
 ﻿using NeoWZ.Extensions;
-using NeoWZ.Serialize.Attributes;
+using NeoWZ.Com;
 using System.Numerics;
 
 namespace NeoWZ.Serialize.Shape2D
 {
     [ComClass("Shape2D#Vector2D")]
-    public class WzVector2D : WzComBase
+    public class WzVector2D : WzSerializable
     {
         public int X { get; set; }
         public int Y { get; set; }
 
         public Vector2 Vector => new Vector2(this.X, this.Y);
 
-        public override WzComBase Clone() => new WzVector2D() {
+        public override WzSerializable Clone() => new WzVector2D() {
             X = this.X, 
             Y = this.Y
         };

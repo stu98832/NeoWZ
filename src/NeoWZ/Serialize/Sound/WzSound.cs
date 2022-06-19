@@ -1,17 +1,17 @@
 ﻿using NeoWZ.Extensions;
-using NeoWZ.Serialize.Attributes;
+using NeoWZ.Com;
 
 namespace NeoWZ.Serialize.Sound
 {
     [ComClass("Sound_DX8")]
-    public class WzSound : WzComBase
+    public class WzSound : WzSerializable
     {
         public int Duration { get; set; } = 0;
         public int Unknown { get; set; } = 2; // 0 when WzMediaType is null
         public WzMediaType MediaType { get; set; } = new WzMediaType();
         public byte[] SoundData { get; set; } = null;
 
-        public override WzComBase Clone() {
+        public override WzSerializable Clone() {
             var sound = new WzSound() {
                 Name = this.Name,
                 Duration = this.Duration,

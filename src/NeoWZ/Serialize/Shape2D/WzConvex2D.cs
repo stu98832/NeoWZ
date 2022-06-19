@@ -1,11 +1,11 @@
 ﻿using NeoWZ.Extensions;
-using NeoWZ.Serialize.Attributes;
+using NeoWZ.Com;
 using System.Collections;
 
 namespace NeoWZ.Serialize.Shape2D
 {
     [ComClass("Shape2D#Convex2D")]
-    public class WzConvex2D : WzComBase, IEnumerable<WzVector2D>
+    public class WzConvex2D : WzSerializable, IEnumerable<WzVector2D>
     {
         private List<WzVector2D> mVertices = new();
 
@@ -14,7 +14,7 @@ namespace NeoWZ.Serialize.Shape2D
 
         public void Add(WzVector2D v) => this.mVertices.Add(v);
 
-        public override WzComBase Clone() {
+        public override WzSerializable Clone() {
             var convex = new WzConvex2D() { Name = this.Name };
             convex.mVertices.AddRange(this.mVertices.Select(x => x.Clone() as WzVector2D));
             return convex;

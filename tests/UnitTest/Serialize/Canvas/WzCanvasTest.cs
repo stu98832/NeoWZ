@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NeoWZ.Serialize;
-using NeoWZ.Serialize.Canvas;
-using NeoWZ.Serialize.Property;
+using NeoWZ.Serialize.Property.Variant;
 using System.IO;
 
 namespace NeoWZ.Serialize.Canvas.Test

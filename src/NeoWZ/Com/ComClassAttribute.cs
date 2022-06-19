@@ -1,4 +1,4 @@
-﻿namespace NeoWZ.Serialize.Attributes
+﻿namespace NeoWZ.Com
 {
     /// <summary>
     /// PCom class

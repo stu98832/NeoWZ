@@ -1,7 +1,10 @@
-﻿namespace NeoWZ.Serialize.Property
+﻿using NeoWZ.Com;
+
+namespace NeoWZ.Serialize.Property.Variant
 {
     public class WzDouble : WzVariant
     {
+        public override VariantType Type => VariantType.Boolean;
         public double Value { get; set; }
 
         public WzDouble(string name, double value = 0) : base(name) {
@@ -20,7 +23,11 @@
         public override float ToFloat(float def = 0) => (float)this.Value;
         public override double ToDouble(double def = 0) => this.Value;
         public override string ToText(string def = null) => this.Value.ToString();
-        public override bool Equals(WzVariant obj) => this.Value == (obj as WzDouble).Value;
+        public override bool Equals(ComVariant obj) => this.Value == (obj as WzDouble).Value;
         public override WzVariant Clone() => new WzDouble(this.Name, this.Value);
+        public override void Deserialize(WzStream stream, ComSerializer serializer) =>
+            this.Value = stream.ReadDouble();
+        public override void Serialize(WzStream stream, ComSerializer serializer) =>
+            stream.WriteDouble(this.Value);
     }
 }

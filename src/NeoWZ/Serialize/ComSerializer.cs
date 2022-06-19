@@ -1,10 +1,10 @@
-﻿using NeoWZ.Serialize.Attributes;
+﻿using NeoWZ.Com;
 using System.Reflection;
 
 namespace NeoWZ.Serialize
 {
     /// <summary>
-    /// Can serialize or deserialize any <see cref="IComObject"/> object
+    /// Can serialize or deserialize any <see cref="IComSerializable"/> object
     /// </summary>
     public abstract class ComSerializer
     {
@@ -30,30 +30,30 @@ namespace NeoWZ.Serialize
         }
 
         /// <summary>
-        /// Serialize a <see cref="IComObject"/> object to file
+        /// Serialize a <see cref="IComSerializable"/> object to file
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="path">File path</param>
         /// <param name="obj">Object which would be serialized</param>
-        public void Serialize<T>(string path, T obj) where T : class, IComObject
+        public void Serialize<T>(string path, T obj) where T : class, IComSerializable
             => this.Serialize<T>(File.OpenWrite(path), obj);
 
         /// <summary>
-        /// Serialize a <see cref="IComObject"/> object to stream
+        /// Serialize a <see cref="IComSerializable"/> object to stream
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="obj">Object which would be serialized</param>
-        public void Serialize<T>(Stream stream, T obj) where T : class, IComObject
+        public void Serialize<T>(Stream stream, T obj) where T : class, IComSerializable
             => this.Serialize<T>(new WzStream(stream, this.IV), obj);
 
         /// <summary>
-        /// Serialize a <see cref="IComObject"/> object to <see cref="WzStream"/>
+        /// Serialize a <see cref="IComSerializable"/> object to <see cref="WzStream"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="obj">Object which would be serialized</param>
-        public void Serialize<T>(WzStream stream, T obj) where T : class, IComObject {
+        public void Serialize<T>(WzStream stream, T obj) where T : class, IComSerializable {
             var attr = obj.GetType().GetCustomAttribute<ComClassAttribute>();
             if (attr == null) {
                 throw new ArgumentException($"Type {obj.GetType()} not a com class");
@@ -63,29 +63,29 @@ namespace NeoWZ.Serialize
         }
 
         /// <summary>
-        /// Deserialize a <see cref="IComObject"/> object from file
+        /// Deserialize a <see cref="IComSerializable"/> object from file
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="path">File path</param>
-        public T Deserialize<T>(string path) where T : class, IComObject
+        public T Deserialize<T>(string path) where T : class, IComSerializable
             => this.Deserialize<T>(File.OpenRead(path));
 
         /// <summary>
-        /// Deserialize a <see cref="IComObject"/> object from <see cref="Stream"/>
+        /// Deserialize a <see cref="IComSerializable"/> object from <see cref="Stream"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="stream">Stream</param>
-        /// <returns><see cref="IComObject"/> object</returns>
-        public T Deserialize<T>(Stream stream) where T : class, IComObject
+        /// <returns><see cref="IComSerializable"/> object</returns>
+        public T Deserialize<T>(Stream stream) where T : class, IComSerializable
             => this.Deserialize<T>(new WzStream(stream, this.IV));
 
         /// <summary>
-        /// Deserialize a <see cref="IComObject"/> object from <see cref="WzStream"/>
+        /// Deserialize a <see cref="IComSerializable"/> object from <see cref="WzStream"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="stream">Stream</param>
-        /// <returns><see cref="IComObject"/> object</returns>
-        public T Deserialize<T>(WzStream stream) where T : class, IComObject {
+        /// <returns><see cref="IComSerializable"/> object</returns>
+        public T Deserialize<T>(WzStream stream) where T : class, IComSerializable {
             var attr = typeof(T).GetCustomAttribute<ComClassAttribute>();
             var className = stream.StringPool.Read(0x73, 0x1B);
             T obj;
@@ -101,10 +101,10 @@ namespace NeoWZ.Serialize
         }
 
         /// <summary>
-        /// Create <see cref="IComObject"/> object when serializer could not comfirm object type
+        /// Create <see cref="IComSerializable"/> object when serializer could not comfirm object type
         /// </summary>
         /// <param name="className"></param>
-        /// <returns><see cref="IComObject"/> object</returns>
-        protected abstract IComObject GetUnknown(string className);
+        /// <returns><see cref="IComSerializable"/> object</returns>
+        protected abstract IComSerializable GetUnknown(string className);
     }
 }

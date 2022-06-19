@@ -67,7 +67,6 @@ namespace NeoWZ
         public bool Contains(WzEntry item) => this.Entries.Contains(item);
         public bool Remove(WzEntry item) => this.Entries.Remove(item);
 
-        // IDataProperty
         public WzEntry this[int index] => this.Entries[index];
         public WzEntry this[string path] {
             get {
@@ -80,7 +79,6 @@ namespace NeoWZ
             }
         }
 
-        // IEnumerable
         public IEnumerator<WzEntry> GetEnumerator() => this.Entries.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => this.Entries.GetEnumerator();
     }

@@ -1,12 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NeoWZ.Json;
 using NeoWZ.Serialize.Property;
+using NeoWZ.Serialize.Property.Variant;
 using NeoWZ.Serialize.UOL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NeoWZ.Json.Test
 {
