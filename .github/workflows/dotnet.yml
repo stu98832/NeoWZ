@@ -1,4 +1,4 @@
-name: .NET
+name: C# CI
 
 on:
   push:
