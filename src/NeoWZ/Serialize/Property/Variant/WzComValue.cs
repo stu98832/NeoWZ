@@ -29,6 +29,7 @@ namespace NeoWZ.Serialize.Property.Variant
             var size = stream.ReadInt32();
             var off = stream.Position;
             this.Value = serializer.Deserialize<WzSerializable>(stream);
+            this.Value.Name = this.Name;
 
             // prevent incomplete deserialize
             stream.Seek(off + size, SeekOrigin.Begin);
