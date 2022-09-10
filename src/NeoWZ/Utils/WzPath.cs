@@ -9,7 +9,7 @@
 
         public static string GetPropertyPath(string path) {
             int splitIndex = path.IndexOf(".img");
-            return splitIndex == -1 ? "" : path.Substring(splitIndex + 5).Replace('\\', '/').Trim('/').Trim();
+            return splitIndex == -1 ? "" : path.Substring(splitIndex + 4).Replace('\\', '/').Trim('/').Trim();
         }
     }
 }
