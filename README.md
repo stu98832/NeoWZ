@@ -1,4 +1,5 @@
 # NeoWZ
+[![Coverage Status](https://coveralls.io/repos/github/stu98832/NeoWZ/badge.svg?branch=master)](https://coveralls.io/github/stu98832/NeoWZ?branch=master)
 
 可以讀取 Maplestory .wz / .img 檔案的函式庫
 
