@@ -5,7 +5,9 @@ using NeoWZ.Serialize.Property.Variant;
 using NeoWZ.Serialize.Shape2D;
 using NeoWZ.Serialize.Sound;
 using NeoWZ.Serialize.UOL;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 
 namespace NeoWZ.Json
 {
@@ -15,6 +17,7 @@ namespace NeoWZ.Json
         /// <summary> convert <seealso cref="WzSerializable"/> to json string without image/sound data </summary>
         public static string ToJson(this WzSerializable com) {
             return JsonSerializer.Serialize(JsonObject(com), new JsonSerializerOptions {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
                 WriteIndented = true
             });
         }
