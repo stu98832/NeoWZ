@@ -1,4 +1,4 @@
-﻿using NeoWZ.Extensions;
+﻿using System.Numerics;
 
 namespace NeoWZ.Maths
 {
@@ -31,7 +31,7 @@ namespace NeoWZ.Maths
         /// <returns></returns>
         public static uint OffsetHash(uint cur, int hash) {
             uint key = (uint)(((~cur) * hash) - 0x581C3F6D);
-            return key.RotateLeft((byte)(key & 0x1F));
+            return BitOperations.RotateLeft(key, (byte)(key & 0x1F));
         }
     }
 }
